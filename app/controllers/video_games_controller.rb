@@ -13,4 +13,12 @@ class VideoGamesController < ApplicationController
     end
   end
 
+  def show
+    @genres = @video_game.video_games_genres_by_user(current_user.id)
+  end
+
+  def new
+    @video_game = VideoGames.new
+  end
+
 end
