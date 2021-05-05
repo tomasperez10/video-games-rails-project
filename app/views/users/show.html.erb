@@ -1,0 +1,10 @@
+<h1>Account Settings</h1>
+
+<p>
+  <%= button_to "Back to All Favorite Video Games", user_video_games_path(@user), :method => "get" %>
+</p>
+
+  <strong>Email:</strong> <%= @user.email %><br>
+  <strong>Name:</strong> <%= @user.username %><br>
+
+  <%= button_to "Logout", logout_path, :method => "get" %>
