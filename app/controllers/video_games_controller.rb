@@ -43,6 +43,25 @@ class VideoGamesController < ApplicationController
     else
       render :edit
     end
-  end
+   end
+
+   private
+    
+   def video_game_params
+    params.require(:video_game).permit( :title, :description, genre_ids:[], genres_attributes:[:name])
+   end
+   
+   def set_video_game
+    @video_game = VideoGames.find_by(id: params[:id])
+   end
+   
+   def created_by_current_user
+    unless @video_game.created_by == current_user.id
+      flash[:danger] = "Error: cannot edit this video game because you did not create it"
+      redirect_to video_game_path(@video_game)
+    end
+   end
+
+
 
 end
