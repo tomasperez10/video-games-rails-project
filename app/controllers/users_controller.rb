@@ -18,4 +18,18 @@ class UsersController < ApplicationController
           render :new
         end
     end
+
+    def show
+        @user = current_user
+        if logged_in?
+          if @user == User.find_by(id: params[:id])
+            render :layout => "application"
+          else
+            flash[:danger] = "Error: you do not have access to view this user's settings"
+            redirect_to user_video_games_path(@user)
+          end
+        else
+          redirect_to login_path
+        end
+    end
 end
