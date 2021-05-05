@@ -1,0 +1,9 @@
+<% if @video_game.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <ul>
+    <% @video_game.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
