@@ -21,4 +21,18 @@ class VideoGamesController < ApplicationController
     @video_game = VideoGames.new
   end
 
+  def create
+    @video_game = VideoGames.new(video_game_params)
+    if @video_game.save
+      flash[:message] = "#{@video_game.title}"
+      redirect_to video_game_path(@video_game)
+    else
+      render :new
+    end
+  end
+ 
+   def edit
+ 
+   end
+
 end
