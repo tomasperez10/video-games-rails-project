@@ -35,4 +35,14 @@ class VideoGamesController < ApplicationController
  
    end
 
+   def update
+    @video_game.update(video_game_params)
+    if @video_game.save
+      flash[:message] = "#{@video_game.title}"
+      redirect_to video_game_path(@video_game)
+    else
+      render :edit
+    end
+  end
+
 end
