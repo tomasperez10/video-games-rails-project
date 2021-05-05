@@ -1,0 +1,8 @@
+<h1>Edit <%= @video_game.title %></h1>
+
+<p>
+  <%= button_to "Back to #{@video_game.title}", video_game_path(@video_game), :method => "get" %>
+</p>
+<p>
+  <%= button_to "View All Video Games", video_games_path(@video_games), :method => "get" %>
+</p>
