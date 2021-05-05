@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   resources :game_genres
-  resources :genres
-  resources :video_games
+
+  resources :genres, only: [:index, :show]
+  
+  resources :video_games do
+    resources :genres, except: [:destroy]
+  end
+  
   resources :users
 
   post '/video_games/new', to: 'video_games#index'
