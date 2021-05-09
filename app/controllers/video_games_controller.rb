@@ -14,8 +14,7 @@ class VideoGamesController < ApplicationController
   end
 
   def show
-    @video_game = VideoGame.find(params[:id])
-    @genre = @video_game.genre_attributes
+    @video_game = VideoGame.find_or_create_by(id: params[:video_game_id])
   end
 
   def new
@@ -24,9 +23,9 @@ class VideoGamesController < ApplicationController
 
   def create
     @video_game = VideoGame.new(video_game_params)
-    if @video_game.save
+    if @video_game.save!
       flash[:message] = "#{@video_game.title}"
-      redirect_to video_game_path
+      redirect_to video_game_path(@video_game)
     else
       render :new
     end
@@ -40,7 +39,7 @@ class VideoGamesController < ApplicationController
     @video_game.update(video_game_params)
     if @video_game.save
       flash[:message] = "#{@video_game.title}"
-      redirect_to video_game_path
+      redirect_to video_game_path(@video_game)
     else
       render :edit
     end
@@ -57,9 +56,9 @@ class VideoGamesController < ApplicationController
    end
    
    def created_by_current_user
-    unless @video_game.created_by == current_user.id
+    unless @video_game == current_user.id
       flash[:danger] = "Error: cannot edit this video game because you did not create it"
-      redirect_to video_games_path(@video_game)
+      redirect_to video_games_path
     end
    end
 

@@ -3,18 +3,14 @@
 <p>
   <%= button_to "Back to Favorite Video Games", video_games_path, :method => "get" %>
 </p>
-    < if @video_game.created_by == current_user.id %>
+    <% if @video_game == current_user.id %>
       <p>%
         <%= button_to "Update Video Game Details", edit_video_game_path(@video_game), :method => "get" %>
       </p>
     <% end %>
 
   <p><%= @video_game.description %></p>
-  <p><strong>Genres</strong>: <% @video_game.genres.each do |genre| 
-    link_to(genre.name, genre_path(genre)).join(', ').html_safe
-    end  %>
-  </p>
- 
-
-  <h4>My Genres</h4>
-  <%= genre_options(@genres, @video_games) %>
+  <p><strong>Genres</strong>: <% @video_game.genres.each do |genre| %>
+    <%= link_to(genre.name, genre_path(genre)).join(', ') %>
+     </p>
+    <% end %>

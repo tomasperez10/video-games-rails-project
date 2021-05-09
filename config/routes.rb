@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   
   resources :users
 
-  post '/video_games/new', to: 'video_games#index'
+  post '/video_games/new', to: 'video_games#show'
+
+  #post '/video_games/new'. to: 'video_games#index'
 
   get '/auth/google/callback', to: 'users#google_login'
 
