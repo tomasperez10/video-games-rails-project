@@ -26,7 +26,7 @@ class VideoGamesController < ApplicationController
     @video_game = VideoGame.new(video_game_params)
     if @video_game.save
       flash[:message] = "#{@video_game.title}"
-      redirect_to video_game_path(@video_game)
+      redirect_to video_game_path
     else
       render :new
     end
@@ -40,7 +40,7 @@ class VideoGamesController < ApplicationController
     @video_game.update(video_game_params)
     if @video_game.save
       flash[:message] = "#{@video_game.title}"
-      redirect_to video_game_path(@video_game)
+      redirect_to video_game_path
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class VideoGamesController < ApplicationController
    private
     
    def video_game_params
-    params.require(:video_game).permit( :title, :description, genre_ids:[], genres_attributes:[:name])
+    params.require(:video_game).permit( :title, :description, genres_attributes:[:name])
    end
    
    def set_video_game

@@ -6,6 +6,6 @@
 </p>
 
 <p>Click on a genre below to see all video games in that genre</p>
-  <% alphabetize(@genres).each do |genre| %>
+  <% @genres.each do |genre| %>
     <p><%= link_to genre.name, genre_path(genre) %></p>
   <% end %>

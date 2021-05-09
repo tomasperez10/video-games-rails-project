@@ -9,6 +9,6 @@
 </p>
 
 <p>Video Games:</p>
-  <% alphebetize(@video_games).each do |video_game| %>
+  <% @video_games.each do |video_game| %>
     <p><%= link_to video_game.title, video_game_path(video_game) %></p>
   <% end %>
