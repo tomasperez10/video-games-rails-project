@@ -3,7 +3,7 @@
 <p>
   <%= button_to "Back to Favorite Video Games", video_games_path, :method => "get" %>
 </p>
-    <% if @video_game == current_user.id %>
+    <% if @video_game == current_user %>
       <p>%
         <%= button_to "Update Video Game Details", edit_video_game_path(@video_game), :method => "get" %>
       </p>
@@ -11,5 +11,5 @@
 
   <p><%= @video_game.description %></p>
   <p><strong>Genre</strong>:
-    <%= link_to @video_game.genre.name, genre_path(@genre) %>
+    <%= link_to @genre.name, genre_path(@genre) %>
      </p>

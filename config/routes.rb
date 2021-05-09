@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   
   resources :users do
-    resources :video_games, only: [:index]
+    resources :video_games
   end
 
   post '/video_games/new', to: 'video_games#show'

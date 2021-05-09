@@ -16,6 +16,7 @@ class VideoGamesController < ApplicationController
 
   def show
     @video_game = VideoGame.find_by(params[:id])
+    @genre = Genre.find_by(params[:name])
   end
 
   def new
