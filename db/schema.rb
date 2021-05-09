@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_073348) do
+ActiveRecord::Schema.define(version: 2021_05_09_014901) do
 
   create_table "game_genres", force: :cascade do |t|
     t.integer "video_game_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_073348) do
     t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
   end
 
   create_table "video_games", force: :cascade do |t|
