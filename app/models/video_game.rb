@@ -1,6 +1,5 @@
 class VideoGame < ApplicationRecord
-  has_many :game_genres
-  has_many :genres, through: :game_genres
+  belongs_to :genre
   belongs_to :user
 
   validates :title, presence: true
