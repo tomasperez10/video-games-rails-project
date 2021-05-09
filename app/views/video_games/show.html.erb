@@ -10,7 +10,6 @@
     <% end %>
 
   <p><%= @video_game.description %></p>
-  <p><strong>Genre</strong>: <% @video_game.each do |genre| %>
-    <%= link_to genre.name, genre_path(@genre) %>
+  <p><strong>Genre</strong>:
+    <%= link_to @video_game.genre.name, genre_path(@genre) %>
      </p>
-    <% end %>

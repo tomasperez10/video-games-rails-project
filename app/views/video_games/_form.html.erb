@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<%= form_for(video_games_path) do |f| %>
+<%= form_for @video_game do |f| %>
     <strong><%= f.label :title %></strong>
     <%= f.text_field :title %><br>
   
@@ -16,10 +16,9 @@
     <%= f.text_field :description %><br>
   
     <div>
-      <strong><%= f.label :genre %></strong><br>
-      <%= f.collection_check_boxes :genre_id, Genre.all, :id, :name %>
-      <%= f.text_field :name %>
+      <strong><%= f.label :genre_name, :Genre %></strong><br>
+        <%= f.text_field :genre_name %>
   
-    <%= f.hidden_field :created_by, value: current_user.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.submit %>
   <% end %>

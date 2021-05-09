@@ -3,12 +3,12 @@ class VideoGame < ApplicationRecord
   belongs_to :user
 
 
-  def genre_attributes=(genre_attributes)
-    genre_name = genre_attributes["name"]
-    unless genre_name.blank?
-      genre = Genre.find_or_create_by(name: name)
-      self.genres << genre
-    end
+  def genre_name=(name)
+    self.genre = Genre.find_or_create_by(name: name)
+  end
+
+  def genre_name
+    self.genre ? self.genre.name : nil
   end
 
 end
