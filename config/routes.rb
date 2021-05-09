@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :genres, except: [:destroy]
   end
   
-  resources :users
+  resources :users do
+    resources :video_games, only: [:index]
+  end
 
   post '/video_games/new', to: 'video_games#show'
 

@@ -1,6 +1,7 @@
 class VideoGamesController < ApplicationController
   before_action :require_login
   before_action :created_by_current_user, only: [:edit, :update]
+  # after_action :set_video_game
   helper_method :current_user, :logged_in?
 
   def index
@@ -14,7 +15,7 @@ class VideoGamesController < ApplicationController
   end
 
   def show
-    @video_game = VideoGame.find_or_create_by(id: params[:video_game_id])
+    @video_game = VideoGame.find_by(params[:id])
   end
 
   def new
@@ -22,8 +23,8 @@ class VideoGamesController < ApplicationController
   end
 
   def create
-    @video_game = VideoGame.new(video_game_params)
-    if @video_game.save!
+    @video_game = VideoGame.create(video_game_params)
+    if @video_game.save
       flash[:message] = "#{@video_game.title}"
       redirect_to video_game_path(@video_game)
     else
@@ -48,11 +49,11 @@ class VideoGamesController < ApplicationController
    private
     
    def video_game_params
-    params.require(:video_game).permit( :title, :description, genres_attributes:[:name])
+    params.require(:video_game).permit(:title, :description, genre_id:[], genre_attributes:[:name])
    end
    
    def set_video_game
-    @video_game = VideoGames.find_by(id: params[:id])
+    @video_game = VideoGames.find_by(params[:id])
    end
    
    def created_by_current_user

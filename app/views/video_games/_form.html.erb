@@ -17,10 +17,8 @@
   
     <div>
       <strong><%= f.label :genre %></strong><br>
-      <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
-      <%= f.fields_for :genres, @video_game.genres.build do |genre_fields| %>
-        <%= genre_fields.text_field :name %>
-      <% end %>
+      <%= f.collection_check_boxes :genre_id, Genre.all, :id, :name %>
+      <%= f.text_field :name %>
   
     <%= f.hidden_field :created_by, value: current_user.id %>
     <%= f.submit %>
