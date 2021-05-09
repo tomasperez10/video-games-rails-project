@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     
     def new
         if logged_in?
-          redirect_to user_video_games_path(current_user)
+          redirect_to user_path(current_user)
         end
     end
     
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         user = User.find_by(email: params[:session][:email].downcase)
         if user && user.authenticate(params[:session][:password])
           session[:user_id] = user.id
-          redirect_to user_video_games_path(user)
+          redirect_to user_path(user)
         else
           flash[:danger] = "Error: email and/or password is incorrect or not available"
           render :new

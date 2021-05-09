@@ -1,28 +1,29 @@
 class VideoGamesController < ApplicationController
   before_action :require_login
-  before_action :set_show, only: [:show, :edit, :update]
   before_action :created_by_current_user, only: [:edit, :update]
-  helper_method :current_user
+  helper_method :current_user, :logged_in?
 
   def index
     @user = User.find_by(id: params[:user_id])
+    
     if @user
       @video_games = @user.video_games
     else
-      @video_games = VideoGames.all
+      @video_games = VideoGame.all  
     end
   end
 
   def show
-    @genres = @video_game.video_games_genres_by_user(current_user.id)
+    @video_game = VideoGame.find(params[:id])
+    @genre = @video_game.genre_attributes
   end
 
   def new
-    @video_game = VideoGames.new
+    @video_game = VideoGame.new
   end
 
   def create
-    @video_game = VideoGames.new(video_game_params)
+    @video_game = VideoGame.new(video_game_params)
     if @video_game.save
       flash[:message] = "#{@video_game.title}"
       redirect_to video_game_path(@video_game)
@@ -58,7 +59,7 @@ class VideoGamesController < ApplicationController
    def created_by_current_user
     unless @video_game.created_by == current_user.id
       flash[:danger] = "Error: cannot edit this video game because you did not create it"
-      redirect_to video_game_path(@video_game)
+      redirect_to video_games_path(@video_game)
     end
    end
 

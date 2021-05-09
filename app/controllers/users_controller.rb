@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
     def new
         if logged_in?
-            redirect_to user_video_games_path(current_user)
+            redirect_to user_path(current_user)
         else
             @user = User.new
         end
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
           session[:user_id] = @user.id
-          redirect_to user_video_games_path(@user)
+          redirect_to user_path(@user)
         else
           render :new
         end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
             render :layout => "application"
           else
             flash[:danger] = "Error: you do not have access to view this user's settings"
-            redirect_to user_video_games_path(@user)
+            redirect_to user_path(@user)
           end
         else
           redirect_to login_path
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     
         if @user.save
           session[:user_id] = @user.id
-          redirect_to user_video_games_path(@user)
+          redirect_to user_path(@user)
         else
           render :new
         end

@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :game_genres
-
   resources :genres, only: [:index, :show]
   
   resources :video_games do

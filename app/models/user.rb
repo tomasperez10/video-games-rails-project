@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :genres
-    has_many :video_games, through: :genres
+    has_many :video_games
+    has_many :genres, through: :video_games
 
     validates :email, :presence => true,
                     :uniqueness => true

@@ -10,7 +10,11 @@
     <% end %>
 
   <p><%= @video_game.description %></p>
-  <p><strong>Genres</strong>: <%= @video_game.genres.map { |genre| link_to(genre.name, genre_path(genre)) }.join(', ').html_safe %></p>
+  <p><strong>Genres</strong>: <% @video_game.genres.each do |genre| 
+    link_to(genre.name, genre_path(genre)).join(', ').html_safe
+    end  %>
+  </p>
+ 
 
   <h4>My Genres</h4>
   <%= genre_options(@genres, @video_games) %>
