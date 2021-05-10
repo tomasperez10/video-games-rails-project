@@ -1,5 +1,5 @@
 <h1>Create a New Favorite Video Game</h1>
-<%= render partial: 'form', video_game: VideoGame.new %>
+<%= render partial: 'form', locals: {video_game: @video_game} %>
 </br>
 <p>
   <%= button_to "Back to Favorite Video Games", video_games_path, :method => "get" %>

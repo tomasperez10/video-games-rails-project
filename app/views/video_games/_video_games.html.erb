@@ -1,5 +1,5 @@
     <div><% @video_games.each do |video_game| %>
-        Game: <%= link_to video_game.title, video_game_path(video_game) %>
-        Genre: <%= video_game.genre.name %>
+        <p> Game: <%= link_to video_game.title, video_game_path(video_game) %>
+        Genre: <%= video_game.genre.name %> </p>
     </div>
     <% end %>

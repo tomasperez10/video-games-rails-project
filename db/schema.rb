@@ -12,6 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2021_05_09_091403) do
 
+  create_table "game_genres", force: :cascade do |t|
+    t.integer "video_game_id"
+    t.integer "genre_id"
+    t.integer "video_games_id", null: false
+    t.integer "genres_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genres_id"], name: "index_game_genres_on_genres_id"
+    t.index ["video_games_id"], name: "index_game_genres_on_video_games_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.integer "video_game_id"
@@ -39,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_05_09_091403) do
     t.index ["user_id"], name: "index_video_games_on_user_id"
   end
 
+  add_foreign_key "game_genres", "genres", column: "genres_id"
+  add_foreign_key "game_genres", "video_games", column: "video_games_id"
   add_foreign_key "video_games", "genres"
   add_foreign_key "video_games", "users"
 end

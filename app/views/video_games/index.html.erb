@@ -1,11 +1,11 @@
-<h1><%= "#{current_user.username}'s Favorite Video Games" %></h1>
+<h1><%= "#{current_user.email}'s Favorite Video Games" %></h1>
 
 <p>
   <%= button_to "Add New Video Game", new_video_game_path, :method => "get" %>
 </p>
 </br>
 <p>
-<%= render partial: 'video_games', video_games: VideoGame.all %>
+<%= render partial: 'video_games', locals: {video_games: @video_games} %>
 </p>
 <br>
 <p>Browse By:

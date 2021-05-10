@@ -1,14 +1,12 @@
 class VideoGamesController < ApplicationController
   before_action :require_login
-  before_action :created_by_current_user, only: [:edit, :update]
+  # before_action :created_by_current_user, only: [:edit, :update]
   # after_action :set_video_game
   helper_method :current_user, :logged_in?
 
   def index
-    @user = User.find_by(id: params[:user_id])
-    
-    if @user
-      @video_games = @user.video_games
+    if logged_in?
+      @video_games = current_user.video_games
     else
       @video_games = VideoGame.all  
     end
@@ -24,28 +22,33 @@ class VideoGamesController < ApplicationController
   end
 
   def create
-    @video_game = VideoGame.create(video_game_params.merge(user_id: current_user.id))
-    if @video_game.save
-      flash[:message] = "#{@video_game.title}"
-      redirect_to video_game_path(@video_game)
-    else
-      render :new
-    end
+      @video_game = VideoGame.create(video_game_params.merge(user_id: current_user.id))
+      if @video_game.save
+        flash[:message] = "#{@video_game.title}"
+        redirect_to video_game_path(@video_game)
+      else
+        render :new
+      end
   end
  
    def edit
- 
+      @video_game = VideoGame.find_by(params[:id])
+      @genre = Genre.find_by(params[:name])
    end
 
    def update
+    @video_game = VideoGame.find_by(params[:id])
+    @genre = Genre.find_by(params[:name])
     @video_game.update(video_game_params)
-    if @video_game.save
-      flash[:message] = "#{@video_game.title}"
-      redirect_to video_game_path(@video_game)
-    else
-      render :edit
-    end
+
+      if @video_game.save
+        flash[:message] = "#{@video_game.title}"
+        redirect_to video_game_path(@video_game)
+      else
+        render :edit
+      end
    end
+
 
    private
     
@@ -57,12 +60,12 @@ class VideoGamesController < ApplicationController
   #   @video_game = VideoGames.find_by(params[:id])
   #  end
    
-   def created_by_current_user
-    unless @video_game == current_user.id
-      flash[:danger] = "Error: cannot edit this video game because you did not create it"
-      redirect_to video_games_path
-    end
-   end
+    # def created_by_current_user
+    #  unless @video_game == current_user
+    #    flash[:danger] = "Error: cannot edit this video game because you did not create it"
+    #    redirect_to video_games_path
+    #  end
+    # end
 
 
 

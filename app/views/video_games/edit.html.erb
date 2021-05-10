@@ -1,5 +1,5 @@
 <h1>Edit <%= @video_game.title %></h1>
-
+<%= render partial: 'form', locals: {video_game: @video_game} %>
 <p>
   <%= button_to "Back to #{@video_game.title}", video_game_path(@video_game), :method => "get" %>
 </p>
