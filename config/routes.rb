@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   #post '/video_games/new'. to: 'video_games#index'
 
-  get '/auth/google/callback', to: 'users#google_login'
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
 
   get '/login', to: 'sessions#new'
 
