@@ -13,8 +13,8 @@ class VideoGamesController < ApplicationController
   end
 
   def show
-    @video_game = VideoGame.find_by(params[:id])
-    @genre = Genre.find_by(params[:name])
+    @video_game = VideoGame.find_by(id: params[:id])
+    @genre = @video_game.genre
   end
 
   def new
@@ -32,13 +32,13 @@ class VideoGamesController < ApplicationController
   end
  
    def edit
-      @video_game = VideoGame.find_by(params[:id])
-      @genre = Genre.find_by(params[:name])
+      @video_game = VideoGame.find_by(id: params[:id])
+      @genre = Genre.find_by(id: params[:id])
    end
 
    def update
-    @video_game = VideoGame.find_by(params[:id])
-    @genre = Genre.find_by(params[:name])
+    @video_game = VideoGame.find_by(id: params[:id])
+    @genre = Genre.find_by(id: params[:id])
     @video_game.update(video_game_params)
 
       if @video_game.save
