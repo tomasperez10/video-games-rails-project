@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
 
+  get '/longest_title', to: 'video_games#longest_title'
+
   get '/index_two', to: 'users#index_two'
 
   get '/login', to: 'sessions#new'

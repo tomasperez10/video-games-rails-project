@@ -2,7 +2,9 @@ class VideoGame < ApplicationRecord
   belongs_to :genre
   belongs_to :user
 
-  default_scope { order("title") }
+  # default_scope { order("title") }
+
+  scope :longest_title, -> { order("LENGTH(title) DESC").first.title(&:length) }
 
   validates :title, :presence => true
   

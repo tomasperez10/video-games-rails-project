@@ -49,6 +49,10 @@ class VideoGamesController < ApplicationController
       end
    end
 
+   def longest_title
+    @video_game = VideoGame.longest_title
+   end
+
 
    private
     
@@ -70,3 +74,15 @@ class VideoGamesController < ApplicationController
 
 
 end
+
+
+
+# Step 1 : Dont code, pseudo code
+
+# What is the Challenge/Task?
+  # we want to create a route that brings us to a view to show the video game with the longest title
+
+  # 1. Create a route 
+  # 2. Create an action (in the video games controller?) for our route to direct to
+  # 3. Write a scope method in video_game model to get the right video game(longest title)
+  # 4. Create a view to direct to and display video game
