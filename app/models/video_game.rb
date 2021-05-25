@@ -2,6 +2,8 @@ class VideoGame < ApplicationRecord
   belongs_to :genre
   belongs_to :user
 
+  default_scope { order("title") }
+
   validates :title, :presence => true
   
   validates :description, :presence => true

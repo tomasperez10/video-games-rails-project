@@ -11,3 +11,13 @@
   <strong>Email:</strong> <%= @user.email %><br>
 
   <%= button_to "Logout", logout_path, :method => "get" %>
+
+  <br>
+
+  <p>
+    <%= button_to "Other gamers posted these genres for their video games!", users_path, :method => "get" %>
+  </p><br>
+
+  <p>
+    <%= button_to "Other gamers posted these video games!", index_two_path, :method => "get" %>
+  </p>

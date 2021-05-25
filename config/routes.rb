@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
 
+  get '/index_two', to: 'users#index_two'
+
   get '/login', to: 'sessions#new'
 
   post '/login', to: 'sessions#create'

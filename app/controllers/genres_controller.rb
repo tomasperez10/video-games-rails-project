@@ -1,8 +1,11 @@
 class GenresController < ApplicationController
     before_action :require_login
 
+    helper_method :current_user, :logged_in?
+
+
     def index
-        @genres = Genre.all
+        @genres = Genre.all  
     end
 
     def show

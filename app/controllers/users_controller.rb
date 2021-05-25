@@ -34,6 +34,14 @@ class UsersController < ApplicationController
         end
     end
 
+    def index
+      @users = User.all
+    end
+
+    def index_two
+      @users = User.all
+    end
+
 
     private
 

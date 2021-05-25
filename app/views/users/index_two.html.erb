@@ -1,0 +1,10 @@
+<p> 
+<% @users.each do |u| %>
+   <p> User: <%= u.email %>
+   Video Games: (<%= u.video_games.uniq.map(&:title).join(', ') %>) </p><br>
+    <% end %>
+</p><br>
+
+<p>
+    <%= button_to "Back", new_user_path, :method => "get" %>
+</p>
